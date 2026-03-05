@@ -1,0 +1,414 @@
+@import url("https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&family=Notable&family=Noto+Sans+JP:wght@100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Notable&family=Noto+Sans+JP:wght@100..900&display=swap");
+html,
+body {
+  width: 100%;
+  height: max-content;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: "Lexend";
+  flex-direction: column;
+  background-color: rgba(255, 212, 222, 1);
+  gap: 10px;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px white inset !important;
+}
+
+.no-scroll {
+  overflow: hidden;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  position: relative;
+  justify-content: end;
+  width: calc(100% - 70px);
+  height: 100px;
+  padding-right: 70px;
+  gap: 20px;
+}
+
+#main-logo {
+  width: 200px;
+  position: absolute;
+  top: -50px;
+  left: 0;
+}
+
+#button-append-poll {
+  position: absolute;
+  left: 50%;
+  top: 50px;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  background-color: rgb(255, 108, 113);
+  border: none;
+  color: white;
+  font-size: 20px;
+  font-weight: 700;
+  height: 40px;
+  border-radius: 5px;
+  width: 230px;
+  box-shadow: 0px 10px 15px -2px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease;
+}
+
+#button-append-poll:hover {
+  transform: translate(-50%, -50%) scale(1.05);
+}
+
+nav p {
+  all: unset;
+  font-weight: 600;
+}
+
+nav p:hover {
+  color: rgb(255, 108, 113);
+}
+
+nav a.active {
+  border-bottom: 2px solid rgb(0, 0, 0); /* Ligne sous l'onglet actif */
+}
+
+main {
+  width: max-content;
+  display: flex;
+  flex-direction: column;
+
+  gap: 40px;
+}
+
+#title {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+h1 {
+  font-weight: 700;
+  font-size: 30px;
+}
+
+h4 {
+  font-weight: 500;
+  font-size: 15px;
+}
+
+.poll {
+  width: 700px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  border-radius: 10px;
+  padding: 30px;
+  background-color: white;
+  box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.1);
+  position: relative;
+  transition: transform 0.2s ease;
+}
+
+.poll:hover {
+  transform: scale(1.025);
+}
+
+#poll-logo {
+  width: 50px;
+}
+
+#subject {
+  width: 650px;
+  font-weight: 600;
+  font-size: 22px;
+  color: rgb(56, 56, 56);
+}
+
+#autor,
+#date,
+#datefin {
+  font-weight: 600;
+  color: rgb(185, 185, 185);
+  font-size: 13px;
+}
+
+#subject img {
+  vertical-align: text-bottom;
+}
+
+#privacy {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-weight: 600;
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  font-size: 14px;
+}
+
+#private {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  bottom: 0;
+  font-size: 10px;
+  font-weight: 600;
+}
+
+#private img {
+  width: 16px;
+}
+
+#share {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  position: absolute;
+  right: -15px;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 10px;
+  font-weight: 600;
+  color: green;
+}
+
+#share:hover {
+  scale: 1.05;
+}
+
+.votes {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  height: 30px;
+  width: 80px;
+  border-radius: 50px;
+  border-style: solid;
+  border-width: 2px;
+  border-color: rgb(255, 108, 113);
+  background-color: rgb(252, 221, 221);
+  position: absolute;
+  top: -15px;
+  right: -20px;
+  font-weight: 600;
+  color: #4e4e4e;
+}
+
+#info {
+  text-align: center;
+  color: #979797;
+}
+.popup-overlay {
+  background-color: rgba(255, 108, 113, 0.164);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(10px); /* Applique un flou à l'arrière-plan */
+  z-index: 2;
+}
+.poll-content {
+  max-height: 70vh;
+  overflow-y: auto;
+  z-index: 10;
+  background-color: rgb(255, 255, 255);
+  padding: 40px 20px 10px 20px;
+  border-radius: 12px;
+  min-width: 300px;
+  position: relative;
+  justify-content: center;
+  flex-direction: column;
+  position: fixed;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  box-shadow: 0px 0px 15px 7px rgba(0, 0, 0, 0.089);
+}
+
+.poll-content #subject {
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.poll-content::-webkit-scrollbar {
+  width: 5px; /* Largeur de la scrollbar */
+}
+
+.poll-content::-webkit-scrollbar-thumb {
+  background: rgba(255, 108, 110, 0.6);
+  border-radius: 6px;
+  width: 10px;
+}
+
+.poll-content::-webkit-scrollbar-track {
+  background: rgba(255, 108, 110, 0.3); /* Couleur de la piste de la scrollbar */
+  border-radius: 10px; /* Arrondir les coins de la piste */
+}
+
+#close-poll {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+}
+.options {
+  display: flex;
+  flex-direction: column;
+  font-size: 15px;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+[class^="option-"] {
+  min-width: max-content;
+  padding-right: 70px;
+  height: 20px;
+  border-style: solid;
+  border-color: rgba(255, 212, 222, 1);
+  border-width: 1px;
+  padding: 10px;
+  background-color: rgba(244, 243, 243, 1);
+  position: relative;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  color: rgb(26, 26, 26);
+  transition: transform 0.2s ease;
+}
+
+[class^="option-"]:hover {
+  transform: scale(1.05);
+}
+
+[class^="option-"] > p {
+  z-index: 2;
+  font-weight: 500;
+}
+
+[id^="percents-"] {
+  width: 60px;
+  position: absolute;
+  right: 5px;
+  margin-right: 0;
+  font-weight: 600;
+  text-align: end;
+}
+
+[id^="progression-"] {
+  background-color: rgb(255, 108, 113);
+  opacity: 0;
+  border-radius: 8px;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  position: absolute;
+  z-index: 1;
+}
+
+.poll-card #details p {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-weight: 400;
+  font-size: 14px;
+  color: rgb(185, 185, 185);
+}
+
+.poll-card #details {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+}
+
+.poll-card #details img {
+  width: 16px;
+}
+
+#line {
+  border-top: 1px solid rgb(185, 185, 185);
+  width: 100%;
+  position: relative;
+  bottom: -5px;
+  left: 0;
+}
+
+#see-vote {
+  margin-top: 14px;
+  display: flex;
+  justify-content: center;
+}
+
+#see-vote > p {
+  text-align: center;
+  width: 100%;
+}
+
+#hidevote {
+  display: none;
+}
+
+#see-vote:hover {
+  color: rgb(255, 108, 113);
+}
+
+#lessormore {
+  margin-top: 10px;
+  background-color: white;
+}
+
+#container-answer {
+  position: relative;
+  display: none; /* Masqué par défaut */
+  overflow: hidden;
+  transition: height 0.5s ease;
+}
+
+#showmore,
+#showless {
+  text-align: end;
+  bottom: 0;
+  right: 0;
+}
+
+#showless {
+  display: none;
+}
+
+[id^="answer-"] {
+  background-color: rgb(230, 230, 230);
+  border-radius: 10px;
+  padding: 10px;
+  margin-left: 20px;
+  margin-bottom: 5px;
+  overflow: hidden;
+  transition: height 0.5s ease;
+}
+
+[id^="answer-"] .showvote {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.hidden-vote {
+  display: none;
+  align-items: center;
+  gap: 5px;
+}
